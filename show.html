@@ -12,6 +12,7 @@
     <div class="header1"><h1><a href="./index.html"> TV SHOW SEARCH</a></h1></div>
 
     <div class="container1"></div>
+   
     <h2 style="font-size:80px ;margin-left:40px;font-style: italic;">Seasons</h2>
     <div class="container2"></div>
     <h2 style="font-size:80px ;margin-left:40px;font-style: italic;">Cast</h2>
@@ -19,6 +20,7 @@
     <script >
         let tranferData = sessionStorage.getItem("transferdata")
         console.log(tranferData)
+        
 const container1 = document.querySelector(".container1");
 fetch(`https://api.tvmaze.com/shows/82`)
     .then((response) => response.json())
