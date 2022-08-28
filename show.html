@@ -12,17 +12,17 @@
     <div class="header1"><h1><a href="./index.html"> TV SHOW SEARCH</a></h1></div>
 
     <div class="container1"></div>
-   
+  
     <h2 style="font-size:80px ;margin-left:40px;font-style: italic;">Seasons</h2>
     <div class="container2"></div>
     <h2 style="font-size:80px ;margin-left:40px;font-style: italic;">Cast</h2>
     <div class="container3"></div>
     <script >
-        let tranferData = sessionStorage.getItem("transferdata")
+        let tranferData = JSON.parse(sessionStorage.getItem("transferdata")) 
         console.log(tranferData)
-        
+     
 const container1 = document.querySelector(".container1");
-fetch(`https://api.tvmaze.com/shows/82`)
+fetch(`https://api.tvmaze.com/shows/${tranferData.show.id}`)
     .then((response) => response.json())
     .then((data) => {
         // console.log(data)
@@ -42,11 +42,14 @@ fetch(`https://api.tvmaze.com/shows/82`)
       
     });
     const container2 = document.querySelector(".container2");
-  fetch(`https://api.tvmaze.com/shows/82/seasons`)
+  fetch(`https://api.tvmaze.com/shows/${tranferData.show.id}/seasons`)
     .then((response) => response.json())
     .then((data) => {
     //   console.log(data)
       for (let i = 0; i < data.length; i++) {
+        if(data[i].summary==null){
+            data[i].summary="No summary"
+        }
         html = `<div class="main">
     
     <h3>season:${data[i].number}</h3>
@@ -60,7 +63,7 @@ fetch(`https://api.tvmaze.com/shows/82`)
       }
     });
     const container3 = document.querySelector(".container3");
-    fetch(` https://api.tvmaze.com/shows/82/cast`)
+    fetch(` https://api.tvmaze.com/shows/${tranferData.show.id}/cast`)
     .then((response) => response.json())
     .then((data) => {
     //   console.log(data)
