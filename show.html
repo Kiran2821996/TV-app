@@ -25,16 +25,15 @@ const container1 = document.querySelector(".container1");
 fetch(`https://api.tvmaze.com/shows/${tranferData.show.id}`)
     .then((response) => response.json())
     .then((data) => {
-        // console.log(data)
-    //   for (let i = 0; i < data.length; i++) {
+        
         html = `<div class="main">
             <div>
     <img src="${data.image.medium}" /></div>
     <div class="right">
     <h1>${data.name}</h1>
-    <h4>Genres:${data.genres[0]}</h4>
-    <h4>Language:${data.language}</h4> 
-    <h4>Staus:${data.status}</h4> 
+    <h4><span>Genres:</span>${ data.genres}</h4>
+    <h4><span>Language:</span>${data.language}</h4> 
+    <h4><span>Staus:</span>${data.status}</h4> 
     </div>
      </div>`;
         container1.innerHTML += html;
@@ -52,10 +51,10 @@ fetch(`https://api.tvmaze.com/shows/${tranferData.show.id}`)
         }
         html = `<div class="main">
     
-    <h3>season:${data[i].number}</h3>
+    <h3><span>Season:</span>${data[i].number}</h3>
     <img src="${data[i].image.medium}" alt="">
     <p>${data[i].summary}</p>
-
+<hr>
 
      </div>`;
         container2.innerHTML += html;
@@ -70,8 +69,8 @@ fetch(`https://api.tvmaze.com/shows/${tranferData.show.id}`)
       for (let i = 0; i < data.length; i++) {
         html = `<div class="main">
     <img src="${data[i].person.image.medium}" alt="">
-    <h3>Name:${data[i].person.name}</h3>
-    <h3>Character Name:${data[i].character.name}</h3>
+    <h3><span>Name:</span>${data[i].person.name}</h3>
+    <h3><span>Character Name:</span>${data[i].character.name}</h3>
    
      </div>`;
         container3.innerHTML += html;
